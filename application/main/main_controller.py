@@ -15,6 +15,7 @@ def home():
     today = datetime.now().date()
     return render_template("main.html")
 
+
 @main.route('choose_service', methods=['GET', 'POST'])
 def choose_service():
     today = datetime.now().date()
@@ -25,6 +26,7 @@ def choose_service():
 def admin_home():
     today = datetime.now().date()
     return render_template("admin/layout.html")
+
 
 @main.route('portal_login', methods=['GET', 'POST'])
 def portal_login():
@@ -89,4 +91,4 @@ def portal_enroll():
 @main.route('/logout', methods=('GET', 'POST'))
 def login_out():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.portal_login'))

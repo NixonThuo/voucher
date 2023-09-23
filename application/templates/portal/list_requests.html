@@ -4,7 +4,9 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-4">
             <div class="d-grid gap-2">
-                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap" class="btn btn-primary btn-block" style="background-color: black !important;">Credit 2 Cash Request</a>
+                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;">Credit 2 Cash
+                    Request</a>
             </div>
         </div>
     </div>
@@ -13,20 +15,41 @@
             <table class="table table-striped shadow-sm" id="projectstable">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Transaction ID</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Rejected</th>
+                        <th scope="col">Date Added</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for data in rows %}
                     <tr>
-                        <td scope="col">Madoido hapa</td>
+                        <td>{{ data.cc_tr_serial }}</td>
+                        <td>{{ data.amount }}</td>
+                        <td>{{ data.phone_no }}</td>
+                        {% if data.approved %}
+                        <td>Approved</td>
+                        {% else %}
+                        <td>Pending Approval</td>
+                        {% endif %}
+                        {% if data.rejected %}
+                        <td>Rejected</td>
+                        {% else %}
+                        <td>&nbsp;</td>
+                        {% endif %}
+                        <td>{{ data.date_added.date() }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="requestconversionmodal" tabindex="-1" aria-labelledby="requestconversionmodal" aria-hidden="true">
+<div class="modal fade" id="requestconversionmodal" tabindex="-1" aria-labelledby="requestconversionmodal"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -36,10 +59,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="reqform"
+                    name="reqform">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="phonenumber">
+                        <input type="number" class="form-control" id="phonenumber" name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Credit Amount:</label>
@@ -49,7 +73,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Initiate Request</button>
+                <input type="submit" form="reqform" class="btn btn-primary" value="Initiate Request" />
             </div>
         </div>
     </div>

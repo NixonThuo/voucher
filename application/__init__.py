@@ -5,8 +5,9 @@ from flask_login import LoginManager
 
 
 app = Flask(__name__)
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 login_manager = LoginManager()
+
 
 def something():
     "where the app starts to load"

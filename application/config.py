@@ -14,11 +14,12 @@ class Config(object):
         db=POSTGRES_DB)
     SQLALCHEMY_DATABASE_URI = DB_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_POOL_SIZE = 30
-    SQLALCHEMY_MAX_OVERFLOW = 40
-    SQLALCHEMY_POOL_TIMEOUT = 30
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'pool_pre_ping': True,
+        'echo_pool': True
+    }
     SQLALCHEMY_BINDS = {
-        'maindb': SQLALCHEMY_DATABASE_URI
+        'maindb': DB_URL
     }
 
 
