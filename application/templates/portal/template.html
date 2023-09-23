@@ -99,7 +99,7 @@
 
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">YEBO-PORTAL</a>
+        <a class="navbar-brand" href="{{ url_for('dash.dash_tracking') }}">YEBO-PORTAL</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -113,7 +113,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">HISTORY</a>
+                    <a class="nav-link" href="{{ url_for('dash.dash_tracking') }}">HISTORY</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
