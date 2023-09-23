@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YEBO-PORTAL</title>
+    <link href="{{ url_for('static', filename='portal/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body style="background-color: #6f2bf3 !important;">
+    <section>
+        <div class="row justify-content-center">
+            <div class="col mt-4">
+                <h3 align="center" class="display-3" style="color: white !important;">YEBO-PORTAL</h3>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="mt-4 p-5 bg-primary text-white rounded">
+                <h1>Registration was successfull!</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-4 mt-3">
+                <p class="lead" style="color: white;">
+                    Proceed to login page <a href="{{ url_for('main.portal_enroll') }}" style="color: white;">Here</a>
+                </p>
+            </div>
+            <div class="col col-2 mt-3">
+
+            </div>
+            <div class="col col-4 mt-3">
+
+            </div>
+        </div>
+    </section>
+</body>
+
+<script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/popper.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
+
+</html>

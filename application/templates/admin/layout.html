@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico')}}">
+
+    <title>| I-HMS</title>
+
+    <link href="{{ url_for('static', filename='admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static', filename='admin/css/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static', filename='admin/js/plugins/gritter/jquery.gritter.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/animate.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/style.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/select2/select2.min.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+
+    
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/dropzone/basic.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/codemirror/codemirror.css')}}" rel="stylesheet">
+
+
+
+
+  
+
+  
+
+
+    <!--cnncmmxc---->
+   
+   
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
+
+  <!--  <link href="static/css/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"> -->
+
+    <!--<link href="static/css/plugins/cropper/cropper.min.css" rel="stylesheet">-->
+
+  <!--  <link href="static/css/plugins/switchery/switchery.css" rel="stylesheet"> -->
+
+  <!--  <link href="static/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">-->
+
+  <!--  <link href="static/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">-->
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+
+  <!--  <link href="static/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet"> -->
+    <link href="{{ url_for('static', filename='admin/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/clockpicker/clockpicker.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='admin/css/plugins/select2/select2.min.css')}}" rel="stylesheet">
+
+    <!--<link href="static/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">-->
+
+    <!--  <link href="static/css/plugins/dualListbox/bootstrap-duallistbox.min.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+     <link href="{{ url_for('static', filename='admin/css/plugins/steps/jquery.steps.css')}}" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css" />
+
+
+
+
+    <!--dkflflfkl-->
+
+</head>
+{% set active_url = url_for(request.endpoint) %}
+<body>
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation" style="min-height: 40px;">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> 
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> 
+                                    <span class="block m-t-xs">
+
+
+                                        <strong class="font-bold" style="font-size: 14px; color: #00bdf3"> ADMIN</strong>
+                                    </span> 
+                                </span> 
+                            </a>
+                              
+                                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                     
+                                            <li style="color: #333"><a class="dropdown-item" href="#" >Logout</a></li>
+      
+                                        </ul>
+                           
+                        </div>
+                        <div class="logo-element">
+                            ADMIN
+                        </div>
+                    </li>
+
+                    <!-- filter package-->
+  
+                    <li class="#">
+                        <a href="#"><i class="fa fa-th-large "></i> <span class="nav-label ">Dashboard</span> </a>
+                    </li>
+
+
+                    <!-- end filter package -->
+
+                    <li class="">
+                        <a href="#"><i class="fa fa-folder-open"></i> <span class="nav-label">TAB S</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class="">
+                                <a href=""><i class="fa fa-search"></i> <span class="nav-label 
+                                ">TAB1  </span> </a>
+                            </li>
+
+                            <li class="">
+                                <a href=""><i class="fa fa-edit"></i> <span class="nav-label 
+                                ">TAB2 </span> </a>
+                            </li>
+
+
+
+                            <li class="">
+                                    <a href=""><i class="fa fa-calendar"></i> <span class="nav-label 
+                                    ">TAB3  </span> </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+
+                    
+
+
+
+
+
+
+
+                
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+
+
+
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#" ><i class="fa fa-bars"></i> </a>
+         
+        </div>
+
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!--
+                <li>
+                    <span class="m-r-sm text-muted welcome-message" style="color:#fff ">{{session['hospital_name']}}</span> <span style="color:#fff">{{session['hospital_code']}}</span>
+                </li>-->
+
+                    <li>
+                        <a href="" style="color:red"><i class="fa fa-arrow-circle-right"></i>Logout</a>
+                    </li>
+
+
+                     
+            
+
+            </ul>
+
+        </nav>
+        </div>
+                <div class="row  border-bottom white-bg dashboard-header">
+
+
+
+
+
+
+            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="font-weight-bold text-primary text-uppercase" style="color:forestgreen;font-weight: bold">
+                                <a href="#" class="pull-left badge badge-xs badge-white" id="back" style="color:red" onclick="goBack()">
+                                        <i class="fa fa-backward fa-fw"></i>
+                                    Back</a>
+                            &emsp;  •  •                                                                                                                                                                                                                                                      
+                        </div>
+                    </div>
+                
+                       
+
+
+                                
+                          {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                              {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                  {{ message }}
+                                </div>
+                              {% endfor %}
+                            {% endif %}
+                          {% endwith %}
+                          {% block content %}{% endblock %}
+        
+
+
+
+                        
+
+            
+        </div>
+
+        </div>
+
+                        <div class="footer" style="margin-top:90%;">
+                    <div class="pull-right">
+                        Dashboard<strong>V1.1</strong>
+
+
+                    </div>
+                    <div>
+                       
+                        <i style="font-size:20px;color:red" class="fa fa-bolt danger"></i>&copy; YEBO VOUCHER<strong>2023</strong> 
+                    </div>
+                </div>
+
+</body>
+
+    <!-- Mainly scripts -->
+
+        <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+
+    
+    <script src="static/admin/js/bootstrap.min.js"></script>
+    <script src="static/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="static/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Flot 
+    <script src="static/js/plugins/flot/jquery.flot.js"></script>
+    <script src="static/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="static/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="static/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="static/js/plugins/flot/jquery.flot.pie.js"></script>-->
+
+    <!-- Peity 
+    <script src="static/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="static/js/demo/peity-demo.js"></script>-->
+
+    <!-- Custom and plugin javascript -->
+    <script src="static/admin/js/inspinia.js"></script>
+    <script src="static/admin/js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="static/admin/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- GITTER 
+    <script src="static/js/plugins/gritter/jquery.gritter.min.js"></script> -->
+
+    <!-- Sparkline 
+    <script src="static/js/plugins/sparkline/jquery.sparkline.min.js"></script> -->
+
+    <!-- Sparkline demo data  
+    <script src="static/js/demo/sparkline-demo.js"></script> -->
+
+    <!-- ChartJS-->
+    <script src="static/admin/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Toastr 
+    <script src="static/js/plugins/toastr/toastr.min.js"></script> -->
+
+
+
+
+
+
+    <!-- Mainly scripts -->
+ 
+
+    <script src="static/admin/js/plugins/dataTables/datatables.min.js"></script>
+
+
+    <script src="static/admin/js/plugins/footable/footable.all.min.js"></script>
+
+
+
+
+    <!--kjkjkjkj-->
+
+   
+
+    <!-- Custom and plugin javascript -->
+
+    <script src="static/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+
+
+    <!-- Chosen -->
+    <script src="static/admin/js/plugins/chosen/chosen.jquery.js"></script>
+
+   <!-- JSKnob -->
+   <script src="static/admin/js/plugins/jsKnob/jquery.knob.js"></script>
+
+   <!-- Input Mask-->
+    <script src="static/admin/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+   <!-- Data picker -->
+   <script src="static/admin/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+   <!-- NouSlider -->
+   <!--<script src="static/js/plugins/nouslider/jquery.nouislider.min.js"></script> -->
+
+   <!-- Switchery -->
+  <!-- <script src="static/js/plugins/switchery/switchery.js"></script>-->
+
+    <!-- IonRangeSlider -->
+  <!--  <script src="static/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script> -->
+
+    <!-- iCheck -->
+    <script src="static/admin/js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- MENU -->
+    <script src="static/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- Color picker -->
+    <script src="static/admin/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+
+    <!-- Clock picker -->
+    <script src="static/admin/js/plugins/clockpicker/clockpicker.js"></script>
+
+    <!-- Image cropper -->
+   <!-- <script src="static/js/plugins/cropper/cropper.min.js"></script> -->
+
+    <!-- Date range use moment.js same as full calendar plugin -->
+    <script src="static/admin/js/plugins/fullcalendar/moment.min.js"></script>
+
+    <!-- Date range picker -->
+    <script src="static/admin/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <!-- Select2 -->
+    <script src="static/admin/js/plugins/select2/select2.full.min.js"></script>
+
+    <!-- TouchSpin 
+    <script src="static/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> -->
+
+    <!-- Tags Input
+    <script src="static/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>  -->
+
+   
+
+
+    <script src="static/admin/js/serializeFromTable-min.js"></script>
+
+        <!-- Steps -->
+    <script src="static/admin/js/plugins/steps/jquery.steps.min.js"></script>
+
+
+
+
+
+
+
+
+
+    <!--hapo tu-->
+      <!-- jQuery CDN - Slim version (=without AJAX) -->
+ <script>
+   $(document).on('click', '.remove', function(numrows){
+   $(this).closest('tr').remove();
+
+
+ });
+
+</script>
+
+
+
+   
+
+
+
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                pageLength: 5,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                 
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                 
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+        });
+
+
+
+ 
+
+
+function goBack() {
+    window.history.back();
+        }
+  
+</script>
+
+
+
+
+
+
+</html>

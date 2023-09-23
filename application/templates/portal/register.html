@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YEBO-PORTAL</title>
+    <link href="{{ url_for('static', filename='portal/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body style="background-color: #6f2bf3 !important;">
+    <section>
+        <div class="row justify-content-center">
+            <div class="col mt-4">
+                <h3 align="center" class="display-3" style="color: white !important;">YEBO-PORTAL</h3>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-8 mt-3">
+                <div class="card" align="center">
+                    <h5 class="card-header">Register</h5>
+                    <div class="card-body">
+                        <form method="POST" id="loginform" name="loginform"
+                            action="{{ url_for('main.portal_enroll') }}">
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="name@example.com" value="" autocomplete="off">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="enter your username" value="" autocomplete="off">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="password" autocomplete="off">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="password2" name="password2"
+                                    placeholder="Enter password again" autocomplete="off">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/popper.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
+
+</html>

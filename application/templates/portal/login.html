@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YEBO-PORTAL</title>
+    <link href="{{ url_for('static', filename='portal/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body style="background-color: #6f2bf3 !important;">
+    <section>
+        <div class="row justify-content-center">
+            <div class="col mt-4">
+                <h3 align="center" class="display-3" style="color: white !important;">YEBO-PORTAL</h3>
+            </div>
+            <div class="col mt-4">
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-4 mt-3">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}  alert-dismissible fade show" style="text-align: center;"
+                    role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-4 mt-3">
+                <div class="card" align="center">
+                    <h5 class="card-header">SIGN IN</h5>
+                    <div class="card-body">
+                        <form method="POST" id="loginform" name="loginform" action="{{url_for('main.portal_login')}}">
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="name@example.com" value="" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="password" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2 mt-3">
+
+            </div>
+            <div class="col col-4 mt-3">
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-4 mt-3">
+                <p class="lead" style="color: white;">
+                    No Account? <a href="{{ url_for('main.portal_enroll') }}" style="color: white;">Create one here</a>
+                </p>
+            </div>
+            <div class="col col-2 mt-3">
+
+            </div>
+            <div class="col col-4 mt-3">
+
+            </div>
+        </div>
+    </section>
+</body>
+
+<script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/popper.js') }}" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
+
+</html>
