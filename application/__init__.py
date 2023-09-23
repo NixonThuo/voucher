@@ -18,4 +18,6 @@ def something():
     login_manager.init_app(app)
     from application.main.main_controller import main
     app.register_blueprint(main, url_prefix="/")
+    from application.portal.portal_controller import dash
+    app.register_blueprint(dash, url_prefix="/portal/dash")
     return app

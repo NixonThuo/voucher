@@ -44,7 +44,7 @@ def portal_login():
                 login_user(user)
                 session.permanent = True
                 session['userid'] = str(user.userid)
-                return redirect(url_for('main.home'))
+                return redirect(url_for('dash.dash_tracking'))
     return render_template("portal/login.html", form=form)
 
 
@@ -84,3 +84,9 @@ def portal_enroll():
         db.session.commit()
         return render_template("portal/register_success.html")
     return render_template("portal/register.html", form=form)
+
+
+@main.route('/logout', methods=('GET', 'POST'))
+def login_out():
+    logout_user()
+    return redirect(url_for('main.home'))
