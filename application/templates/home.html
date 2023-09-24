@@ -353,45 +353,45 @@ https://templatemo.com/tm-570-chain-app-dev
   <script src="static/assets/js/custom.js"></script>
 
 
-<script>
-$(document).ready(function() {
-    $('#login').click(function (event){
+  <script>
+    $(document).ready(function () {
+      $('#login').click(function (event) {
         $.ajax({
-            data : {
-            },
-            type : 'POST',
-            url : '/accounts_view_insurance_claims'
+          data: {
+          },
+          type: 'POST',
+          url: '/accounts_view_insurance_claims'
         })
-        .done(function(result) {
+          .done(function (result) {
             if (result.error) {
-                $('#successAlert').hide();
+              $('#successAlert').hide();
             }
             else {
-                $("#panel_data").html(result); 
+              $("#panel_data").html(result);
             }
-        });
+          });
         event.preventDefault();
-    });
+      });
 
-        $('#register').click(function (event){
+      $('#register').click(function (event) {
         $.ajax({
-            data : {
-            },
-            type : 'POST',
-            url : '/accounts_view_insurance_claims'
+          data: {
+          },
+          type: 'POST',
+          url: '/accounts_view_insurance_claims'
         })
-        .done(function(result) {
+          .done(function (result) {
             if (result.error) {
-                $('#successAlert').hide();
+              $('#successAlert').hide();
             }
             else {
-                $("#panel_data").html(result); 
+              $("#panel_data").html(result);
             }
-        });
+          });
         event.preventDefault();
+      });
     });
-  });
-</script>
+  </script>
 
 
 

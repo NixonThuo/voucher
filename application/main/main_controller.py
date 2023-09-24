@@ -46,6 +46,9 @@ def portal_login():
                 login_user(user)
                 session.permanent = True
                 session['userid'] = str(user.userid)
+                session['isadmin'] = user.isadmin
+                if user.isadmin:
+                    return redirect(url_for('admin.client_rqs'))
                 return redirect(url_for('dash.dash_tracking'))
     return render_template("portal/login.html", form=form)
 

@@ -1,0 +1,126 @@
+{% extends "portal/template.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+            <h4>Admin Approval Module</h4>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4 mb-4">
+        <div class="col-md-12">
+            <table class="table table-striped shadow-sm" id="projectstable">
+                <thead>
+                    <tr>
+                        <th scope="col">Transaction ID</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Rejected</th>
+                        <th scope="col">Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in rows %}
+                    <tr>
+                        <td>{{ data.cc_tr_serial }}</td>
+                        <td>{{ data.amount }}</td>
+                        <td>{{ data.phone_no }}</td>
+                        {% if data.approved %}
+                        <td>Approved</td>
+                        {% else %}
+                        <!--  asdsadasdasd -->
+                        {% if not data.rejected %}
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#conversionapprovalmodal"
+                                onclick="setserialapprove(`{{ data.cc_tr_serial }}`);">Approve</button></td>
+                        {% else %}
+                        <td>&nbsp;</td>
+                        {% endif%}
+                        <!--  asdsadasdasd -->
+                        {% endif %}
+                        {% if data.rejected %}
+                        <td>Rejected</td>
+                        {% else %}
+                        <!--  asdsadasdasd -->
+                        {% if not data.approved %}
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#conversionrejectmodal"
+                                onclick="setserialreject(`{{ data.cc_tr_serial }}`);">Reject</button></td>
+                        {% else %}
+                        <td>&nbsp;</td>
+                        {% endif %}
+                        <!--  asdsadasdasd -->
+                        {% endif %}
+                        <td>{{ data.date_added.date() }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="conversionapprovalmodal" tabindex="-1" aria-labelledby="conversionapprovalmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="conversionapprovalmodalLabel">Approve Credit 2 Cash</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('admin.approvereq') }}" method="POST" enctype="multipart/form-data"
+                    id="approveform" name="approveform">
+                    <input type="hidden" class="form-control" id="approverequestserial" name="approverequestserial"
+                        required>
+                </form>
+                <h6>Are you sure you want to approve?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="approveform" class="btn btn-primary" value="Approve" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="conversionrejectmodal" tabindex="-1" aria-labelledby="conversionrejectmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="conversionrejectmodalLabel">Reject Credit 2 Cash</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('admin.rejectreq') }}" method="POST" enctype="multipart/form-data"
+                    id="rejectform" name="rejectform">
+                    <input type="hidden" class="form-control" id="rejectrequestserial" name="rejectrequestserial">
+                </form>
+                <h6>Are you sure you want to reject?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="rejectform" class="btn btn-primary" value="Reject Request" />
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}"></script>
+
+<script>
+
+    function setserialapprove(serial) {
+        $("#approverequestserial").val(serial);
+    }
+
+    function setserialreject(serial) {
+        $("#rejectrequestserial").val(serial);
+    }
+
+</script>
+{% endblock %}

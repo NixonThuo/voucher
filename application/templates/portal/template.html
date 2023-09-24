@@ -99,7 +99,11 @@
 
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        {% if session['isadmin'] %}
+        <a class="navbar-brand" href="#">YEBO-PORTAL-ADMIN</a>
+        {% else %}
         <a class="navbar-brand" href="{{ url_for('dash.dash_tracking') }}">YEBO-PORTAL</a>
+        {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -112,9 +116,15 @@
         -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
+                {% if session['isadmin'] %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.client_rqs') }}">CLIENT REQUESTS</a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('dash.dash_tracking') }}">HISTORY</a>
                 </li>
+                {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <a class="btn btn-outline-light my-2 my-sm-0" href="{{ url_for('main.login_out') }}"
@@ -135,8 +145,10 @@
 <script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}"></script>
 <script src="{{ url_for('static', filename='portal/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='portal/js/popper.js') }}"></script>
-<script src="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/js/dataTables.bootstrap4.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/js/jquery.dataTables.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ url_for('static', filename='portal/DataTables/Buttons-2.3.3/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ url_for('static', filename='portal/DataTables/Buttons-2.3.3/js/buttons.dataTables.min.js') }}"></script>
 <script src="{{ url_for('static', filename='portal/DataTables/Buttons-2.3.3/js/buttons.bootstrap4.min.js') }}"></script>
