@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-4">
-            <h4>Admin Approval Module</h4>
+            <h4>Admin Approval Module</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-4 mb-4">
@@ -30,7 +30,7 @@
                         {% else %}
                         <!--  asdsadasdasd -->
                         {% if not data.rejected %}
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#conversionapprovalmodal"
                                 onclick="setserialapprove(`{{ data.cc_tr_serial }}`);">Approve</button></td>
                         {% else %}
@@ -43,7 +43,7 @@
                         {% else %}
                         <!--  asdsadasdasd -->
                         {% if not data.approved %}
-                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                        <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                 data-target="#conversionrejectmodal"
                                 onclick="setserialreject(`{{ data.cc_tr_serial }}`);">Reject</button></td>
                         {% else %}

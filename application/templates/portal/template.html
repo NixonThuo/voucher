@@ -7,15 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='portal/css/bootstrap.min.css') }}" />
+    <!--<link rel="stylesheet"
+        href="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/css/dataTables.bootstrap4.min.css') }}">-->
+    <!--
     <link rel="stylesheet"
-        href="{{ url_for('static', filename='portal/DataTables/DataTables-1.13.1/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='portal/DataTables/Buttons-2.3.3/css/buttons.bootstrap4.min.css') }}">
+        href="{{ url_for('static', filename='portal/DataTables/Buttons-2.3.3/css/buttons.bootstrap4.min.css') }}"> -->
+
+    <link href="{{ url_for('static', filename='admin/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="shortcut icon" href="#">
+    
 
     <!-- Custom CSS -->
     <style>
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+        @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+        @import url('https://fonts.cdnfonts.com/css/sansation');
+        /*
         /* Sidebar navigation */
         .sidebar {
             height: 100%;
@@ -80,17 +89,44 @@
         }
 
         @font-face {
-            font-family: 'Roboto', sans-serif;
+            font-family: Sansation;
             font-style: normal;
             font-weight: 400;
             src: url("{{ url_for('static', filename='portal/fonts/Roboto/Roboto-Regular.tff') }}") format('truetype');
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Sansation;
             min-height: 100%;
             background-color: #f1f1f1;
+            /*font-family-monospace: 'Sansation', monospace;*/
+            font-size: 13px;
         }
+
+        .table td, .table th {
+            padding: 0.30rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .btn-group-sm>.btn, .btn-sm {
+            padding: 0.1rem 0.5rem;
+            font-size: .800rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.4rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
     </style>
 </head>
 
@@ -127,7 +163,7 @@
                 {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-light my-2 my-sm-0" href="{{ url_for('main.login_out') }}"
+                <a class="btn btn-outline-light my-2 my-sm-0 btn-sm" href="{{ url_for('main.login_out') }}"
                     class="button">Logout</a>
             </form>
         </div>
