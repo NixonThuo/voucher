@@ -15,3 +15,11 @@ class ServiceType(db.Model):
         'autoload': True,
         'autoload_with': db.engine
     }
+
+
+class ServiceTypeOptions(db.Model):
+    __tablename__ = 'service_type_options'
+    __table_args__ = {
+        'autoload': True,
+        'autoload_with': db.engine
+    }

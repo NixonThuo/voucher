@@ -4,29 +4,33 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-3">
             <div class="d-grid gap-2">
-                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap"
-                    class="btn btn-primary btn-block" style="background-color: black !important;">Credit 2 Cash
+                <a data-toggle="modal" data-target="#creditcashmodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;"
+                    onclick="startcredittocash()">Credit 2 Cash
                     Request</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="d-grid gap-2">
-                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap"
-                    class="btn btn-primary btn-block" style="background-color: black !important;">Airtime 2 Betting
+                <a data-toggle="modal" data-target="#creditbettingmodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;"
+                    onclick="startcredittobetting()">Airtime 2 Betting
                     Voucher</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="d-grid gap-2">
-                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap"
-                    class="btn btn-primary btn-block" style="background-color: black !important;">Airtime 2 Electricity
+                <a data-toggle="modal" data-target="#creditelectricmodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;"
+                    onclick="startcredittoelectric()">Airtime 2 Electricity
                     Voucher</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="d-grid gap-2">
-                <a data-toggle="modal" data-target="#requestconversionmodal" data-whatever="@getbootstrap"
-                    class="btn btn-primary btn-block" style="background-color: black !important;">Airtime 2 grocery store voucher</a>
+                <a data-toggle="modal" data-target="#creditgrocerymodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;"
+                    onclick="startcredittogrocery()">Airtime 2 grocery store voucher</a>
             </div>
         </div>
     </div>
@@ -38,6 +42,7 @@
                         <th scope="col">Transaction ID</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Phone Number</th>
+                        <th scope="col">Service Name</th>
                         <th scope="col">Approved</th>
                         <th scope="col">Rejected</th>
                         <th scope="col">Date Added</th>
@@ -49,6 +54,7 @@
                         <td>{{ data.cc_tr_serial }}</td>
                         <td>{{ data.amount }}</td>
                         <td>{{ data.phone_no }}</td>
+                        <td>{{ data.service_type }}</td>
                         {% if data.approved %}
                         <td>Approved</td>
                         {% else %}
@@ -68,34 +74,225 @@
     </div>
 </div>
 
-<div class="modal fade" id="requestconversionmodal" tabindex="-1" aria-labelledby="requestconversionmodal"
+<div class="modal fade" id="creditcashmodal" tabindex="-1" aria-labelledby="creditcashmodal"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="requestconversionmodalLabel">Credit 2 Cash Request</h5>
+                <h5 class="modal-title" id="creditcashmodallabel">Credit 2 Cash
+                    Request</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="reqform"
-                    name="reqform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditcashform"
+                    name="creditcashform">
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE</label>
+                        <select class="form-control" id="creditcashservicetype" name="servicetype">
+                            {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.service_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" class="form-control" id="creditcashserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="phonenumber" name="phonenumber">
+                        <input type="number" class="form-control" id="creditcashphonenumber" name="phonenumber">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Credit Amount:</label>
-                        <input type="number" class="form-control" id="creditamount" name="creditamount">
+                        <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
+                        <select class="form-control" id="creditcashcreditamount" name="creditamount">
+                            {% for option in soptions %}
+                                {% if option.service_id == 1 %}
+                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" form="reqform" class="btn btn-primary" value="Initiate Request" />
+                <input type="submit" form="creditcashform" class="btn btn-primary" value="Initiate Request" />
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="creditbettingmodal" tabindex="-1" aria-labelledby="creditbettingmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="creditbettingmodallabel">Credit 2 Cash
+                    Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditbettingform"
+                    name="creditbettingform">
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE</label>
+                        <select class="form-control" id="creditbettingservicetype" name="servicetype">
+                            {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.service_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" class="form-control" id="creditbettingserviceserial" name="serviceserial">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
+                        <input type="number" class="form-control" id="creditbettingphonenumber" name="phonenumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
+                        <select class="form-control" id="creditbettingamount" name="creditamount">
+                            {% for option in soptions %}
+                                {% if option.service_id == 2 %}
+                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="creditbettingform" class="btn btn-primary" value="Initiate Request" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="creditelectricmodal" tabindex="-1" aria-labelledby="creditelectricmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="creditelectricmodallabel">Credit 2 Cash
+                    Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditelectricform"
+                    name="creditelectricform">
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE</label>
+                        <select class="form-control" id="creditelectricservicetype" name="servicetype">
+                            {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.service_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" class="form-control" id="creditelectricserviceserial" name="serviceserial">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
+                        <input type="number" class="form-control" id="creditelectricphonenumber" name="phonenumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
+                        <select class="form-control" name="creditamount" id="creditelectriccreditamount">
+                            {% for option in soptions %}
+                                {% if option.service_id == 3 %}
+                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="creditelectricform" class="btn btn-primary" value="Initiate Request" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="creditgrocerymodal" tabindex="-1" aria-labelledby="creditgrocerymodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="creditgrocerymodallabel">Credit 2 Cash
+                    Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditgroceryform"
+                    name="creditgroceryform">
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE</label>
+                        <select class="form-control" id="creditgroceryservicetype" name="servicetype">
+                            {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.service_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" class="form-control" id="creditgroceryserviceserial" name="serviceserial">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
+                        <input type="number" class="form-control" id="creditgroceryphonenumber" name="phonenumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
+                        <select class="form-control" id="creditgroceryamount" name="creditamount">
+                            {% for option in soptions %}
+                                {% if option.service_id == 4 %}
+                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="creditgroceryform" class="btn btn-primary" value="Initiate Request" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}" crossorigin="anonymous"></script>
+<script>
+    function startcredittocash() {
+        $("#creditcashmodallabel").text("Airtime to cash");
+        $("#creditcashservicetype").val(1);
+        $("#creditcashservicetype").attr('disabled', true);
+        $("#creditcashserviceserial").val(1);
+    }
+
+    function startcredittobetting() {
+        $("#creditbettingmodallabel").text("Airtime 2 Betting Voucher");
+        $("#creditbettingservicetype").val(2);
+        $("#creditbettingservicetype").attr('disabled', true);
+        $("#creditbettingserviceserial").val(2);
+    }
+
+    function startcredittoelectric() {
+        $("#creditelectricmodallabel").text("Airtime 2 Electricity Voucher");
+        $("#creditelectricservicetype").val(3);
+        $("#creditelectricservicetype").attr('disabled', true);
+        $("#creditelectricserviceserial").val(3);
+    }
+
+    function startcredittogrocery() {
+        $("#creditgrocerymodallabel").text("Airtime 2 Grocery Voucher");
+        $("#creditgroceryservicetype").val(4);
+        $("#creditgroceryservicetype").attr('disabled', true);
+        $("#creditgroceryserviceserial").val(4);
+    }
+
+</script>
 {% endblock %}
