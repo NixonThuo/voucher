@@ -26,7 +26,7 @@
 
 
         <div class="row justify-content-center">
-            <div class="col col-4 mt-3">
+            <div class="col-md-4 col-sm-8 col-12  mt-3">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                 {% for category, message in messages %}
@@ -48,11 +48,11 @@
 
         <div class="row justify-content-center">
 
-            <div class="col col-4 mt-3">
+            <div class="col col-md-4 col-sm-8 col-12 mt-3">
 
             </div>
 
-            <div class="col col-4 mt-3">
+            <div class="col col-md-4 col-sm-8 col-12 mt-3">
                 <div class="card" align="center">
                     <h5 class="card-header">SIGN IN</h5>
                     <div class="card-body">
@@ -84,7 +84,7 @@
             <div class="col col-4 mt-3">
 
             </div>
-            <div class="col col-4 mt-3">
+            <div class="col col-md-4 col-sm-12 mt-3">
                 <p class="lead" style="color: white;">
                     No Account? <a href="{{ url_for('main.portal_enroll') }}" style="color: white;">Create one here</a>
                 </p>

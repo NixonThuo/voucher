@@ -1,20 +1,20 @@
 {% extends "portal/template.html" %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center mt-4">
         <div class="col-md-4">
             <h4>Admin Approval Module</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-4 mb-4">
-        <div class="col-md-12">
-            <table class="table table-striped shadow-sm" id="projectstable">
+        <div class="col-12">
+            <table class="table table-striped shadow-sm" id="admintable">
                 <thead>
                     <tr>
                         <th scope="col">Transaction ID</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Phone Number</th>
-                        <th scope="col">List Requests</th>
+                        <th scope="col">Request Type</th>
                         <th scope="col">Approved</th>
                         <th scope="col">Rejected</th>
                         <th scope="col">Date Added</th>
@@ -53,7 +53,7 @@
                         {% endif %}
                         <!--  asdsadasdasd -->
                         {% endif %}
-                        <td>{{ data.date_added.date() }}</td>
+                        <td>{{ data.date_added }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

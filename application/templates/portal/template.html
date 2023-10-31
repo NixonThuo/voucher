@@ -171,7 +171,7 @@
 
 
     <!-- Main Content -->
-    <div class="main">
+    <div class="container-fluid">
         {% block content %}
         {% endblock %}
     </div>
@@ -204,8 +204,17 @@
             pageLength: 5
         });
 
-        var projectstable = $("#projectstable").DataTable({
+        var userstable = $("#userstable").DataTable({
             lengthChange: false,
+            "order": [[0, "desc"]],
+            buttons: [{ extend: 'excel', text: 'Export To Excel' }],
+            pageLength: 5
+        });
+
+        var admintable = $("#admintable").DataTable({
+            lengthChange: false,
+            "order": [[6, "desc"]],
+            buttons: [{ extend: 'excel', text: 'Export To Excel' }],
             pageLength: 5
         });
 
