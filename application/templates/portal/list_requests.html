@@ -2,15 +2,15 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center mt-4">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="d-grid gap-2">
                 <a data-toggle="modal" data-target="#creditcashmodal" data-whatever="@getbootstrap"
                     class="btn btn-primary btn-block" style="background-color: black !important;"
-                    onclick="startcredittocash()">Credit 2 Cash
+                    onclick="startcredittocash()">Airtime 2 Cash
                     Request</a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="d-grid gap-2">
                 <a data-toggle="modal" data-target="#creditbettingmodal" data-whatever="@getbootstrap"
                     class="btn btn-primary btn-block" style="background-color: black !important;"
@@ -18,7 +18,7 @@
                     Voucher</a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="d-grid gap-2">
                 <a data-toggle="modal" data-target="#creditelectricmodal" data-whatever="@getbootstrap"
                     class="btn btn-primary btn-block" style="background-color: black !important;"
@@ -26,11 +26,18 @@
                     Voucher</a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="d-grid gap-2">
                 <a data-toggle="modal" data-target="#creditgrocerymodal" data-whatever="@getbootstrap"
                     class="btn btn-primary btn-block" style="background-color: black !important;"
                     onclick="startcredittogrocery()">Airtime 2 grocery store voucher</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-grid gap-2">
+                <a data-toggle="modal" data-target="#discountedairtimemodal" data-whatever="@getbootstrap"
+                    class="btn btn-primary btn-block" style="background-color: black !important;"
+                    onclick="buydiscountedairtime()">Buy discounted Airtime</a>
             </div>
         </div>
     </div>
@@ -46,6 +53,7 @@
                         <th scope="col">Approved</th>
                         <th scope="col">Rejected</th>
                         <th scope="col">Date Added</th>
+                        <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +74,8 @@
                         <td>&nbsp;</td>
                         {% endif %}
                         <td>{{ data.date_added.date() }}</td>
+                        <td><button data-toggle="modal" data-target="#paymentmodal" type="button" class="btn btn-primary"
+                             onclick="javascript:startpayment(`{{ data.cc_tr_serial }}`, `{{ data.amount }}`, `{{ data.service_type }}`);">Make Payment</button></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -216,6 +226,53 @@
 </div>
 
 
+<div class="modal fade" id="discountedairtimemodal" tabindex="-1" aria-labelledby="discountedairtimemodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="discountedairtimemodallabel">Buy Discounted Airtime</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="discountedairtimeform"
+                    name="discountedairtimeform">
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE</label>
+                        <select class="form-control" id="discountedairtimeservicetype" name="servicetype">
+                            {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.service_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" class="form-control" id="discountedairtimeserviceserial" name="serviceserial">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
+                        <input type="number" class="form-control" id="discountedairtimephonenumber" required name="phonenumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
+                        <select class="form-control" id="discountedairtimeamount" name="creditamount">
+                            {% for option in soptions %}
+                                {% if option.service_id == 4 %}
+                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="discountedairtimeform" class="btn btn-primary" value="Initiate Request" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="creditgrocerymodal" tabindex="-1" aria-labelledby="creditgrocerymodal"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -264,6 +321,38 @@
 </div>
 
 
+<div class="modal fade" id="paymentmodal" tabindex="-1" aria-labelledby="paymentmodal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentmodallabel">Make Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" enctype="multipart/form-data" id="paymentform"
+                    name="creditgroceryform">
+                    <div class="form-group">
+                        <label for="payservicename" class="col-form-label">Service Name:</label>
+                        <input type="text" class="form-control" id="payservicename" required name="payservicename" readonly>
+                    </div>
+                    <input type="hidden" class="form-control" id="paymentserial" name="paymentserial">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="payamount" required name="payamount">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" form="creditgroceryform" class="btn btn-primary" value="Initiate Request" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="{{ url_for('static', filename='portal/js/jquery-3.6.3.min.js') }}" crossorigin="anonymous"></script>
 <script>
     function startcredittocash() {
@@ -292,6 +381,22 @@
         $("#creditgroceryservicetype").val(4);
         $("#creditgroceryservicetype").attr('disabled', true);
         $("#creditgroceryserviceserial").val(4);
+    }
+
+    function buydiscountedairtime() {
+        $("#discountedairtimemodallabel").text("Buy Discounted airtime");
+        $("#discountedairtimeservicetype").val(5);
+        $("#discountedairtimeservicetype").attr('disabled', true);
+        $("#discountedairtimeserviceserial").val(5);
+    }
+
+    function startpayment(paymentserial, amount, servicetype){
+        console.log(paymentserial);
+        console.log(amount);
+        console.log(servicetype);
+        $("#paymentserial").val(paymentserial);
+        $("#payamount").val(amount);
+        $("#payservicename").val(servicetype);
     }
 
 </script>

@@ -9,7 +9,7 @@ class Config(object):
     SESSION_COOKIE_SECURE = False
     POSTGRES_URL = "45.80.152.117"
     POSTGRES_DB = "thabiso"
-    DB_URL = 'postgresql://{user}:{pw}@{url}/{db}?application_name=H3SIMPLE'.format(
+    DB_URL = 'postgresql://{user}:{pw}@{url}/{db}?application_name=YEBOAPP'.format(
         user=DB_USERNAME, pw=DB_PASSWORD, url=POSTGRES_URL,
         db=POSTGRES_DB)
     SQLALCHEMY_DATABASE_URI = DB_URL
