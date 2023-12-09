@@ -29,6 +29,7 @@ def dash_tracking():
         CreditServicesTr.date_added,
         CreditServicesTr.phone_no,
         CreditServicesTr.service_id,
+        CreditServicesTr.marked_paid,
         ServiceType.service_type
     ).all()
     services = ServiceType.query.all()
@@ -73,7 +74,7 @@ def initiate_payment():
             trans.yoco_paymentid = paymentid
             trans.yoco_checkoutid = paymentdata["yoco"]["metadata"]["checkoutId"]
             trans.yoco_payment_facilitator = paymentdata["yoco"]["metadata"]["paymentFacilitator"]
-            trans.yoco_payment_facilitator = paymentdata["yoco"]["yoco_merchant_id"]
+            trans.yoco_payment_facilitator = paymentdata["yoco"]["merchantId"]
             db.session.commit()
             return redirect(redirecturl)
         return render_template("portal/payment_success.html", paymentdata=paymentdata)
@@ -85,4 +86,6 @@ def succ_url(paymentserial):
     trans  = CreditServicesTr.query.filter_by(
                 cc_tr_serial=paymentserial
             ).first()
+    trans.success_url = True
+    db.session.commit()
     return render_template("portal/payment_success.html", trans=trans)

@@ -74,8 +74,12 @@
                         <td>&nbsp;</td>
                         {% endif %}
                         <td>{{ data.date_added.date() }}</td>
+                        {% if data.marked_paid %}
+                        <td>PAID</td>
+                        {% else %}
                         <td><button data-toggle="modal" data-target="#paymentmodal" type="button" class="btn btn-primary"
-                             onclick="javascript:startpayment(`{{ data.cc_tr_serial }}`, `{{ data.amount }}`, `{{ data.service_type }}`);">Make Payment</button></td>
+                            onclick="javascript:startpayment(`{{ data.cc_tr_serial }}`, `{{ data.amount }}`, `{{ data.service_type }}`);">Make Payment</button></td>
+                        {% endif %}   
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -32,4 +32,6 @@ def something():
     app.register_blueprint(dash, url_prefix="/portal/dash")
     from application.admin.admin_controller import admin
     app.register_blueprint(admin, url_prefix="/portal/admin")
+    from application.webhook.hook_controller import hook
+    app.register_blueprint(hook, url_prefix="/hook")
     return app

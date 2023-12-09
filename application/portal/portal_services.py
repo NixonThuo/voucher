@@ -2,6 +2,7 @@ import requests
 import os
 
 def send_payment_req(amount, serial, servicename):
+
     data = {
         "success": False 
     }
@@ -9,8 +10,16 @@ def send_payment_req(amount, serial, servicename):
     amountcents  = int(amount) * 100
     # Replace these values with your actual URL, authorization token, and payload
     url = 'https://payments.yoco.com/api/checkouts'
+
     authorization_token = 'Bearer ' + str(os.environ.get("YOCO_TEST_KEY"))
-    payload = {'amount': amountcents, 'servicename': servicename, "currency": "ZAR"}
+
+    payload = {
+                'amount': amountcents,
+               'servicename': servicename,
+               "currency": "ZAR",
+               "successUrl": "https://yebovoucher.co.za/portal/dash/succurl/"+str(serial)
+            }
+
     print(payload)
 
     # Define headers with Authorization
