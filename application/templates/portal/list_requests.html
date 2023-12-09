@@ -332,8 +332,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data" id="paymentform"
-                    name="creditgroceryform">
+                <form action="{{ url_for('dash.initiate_payment') }}" method="POST" enctype="multipart/form-data" id="paymentform"
+                    name="paymentform">
                     <div class="form-group">
                         <label for="payservicename" class="col-form-label">Service Name:</label>
                         <input type="text" class="form-control" id="payservicename" required name="payservicename" readonly>
@@ -347,7 +347,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" form="creditgroceryform" class="btn btn-primary" value="Initiate Request" />
+                <input type="submit" form="paymentform" class="btn btn-primary" value="Initiate Request" />
             </div>
         </div>
     </div>
