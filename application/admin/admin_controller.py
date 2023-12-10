@@ -30,6 +30,7 @@ def client_rqs():
             CreditServicesTr.date_added,
             CreditServicesTr.phone_no,
             CreditServicesTr.service_id,
+            CreditServicesTr.marked_paid,
             ServiceType.service_type,
         )
         .all()

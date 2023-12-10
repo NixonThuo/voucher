@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>YEBO-PORTAL</title>
+    <link rel="icon" type="image/x-icon" href="/static/assets/images/snip_logo2.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='portal/css/bootstrap.min.css') }}" />
@@ -213,7 +214,7 @@
 
         var admintable = $("#admintable").DataTable({
             lengthChange: false,
-            "order": [[6, "desc"]],
+            "order": [[7, "desc"]],
             buttons: [{ extend: 'excel', text: 'Export To Excel' }],
             pageLength: 5
         });

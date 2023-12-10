@@ -15,6 +15,7 @@
                         <th scope="col">Amount</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Request Type</th>
+                        <th scope="col">Paid</th>
                         <th scope="col">Approved</th>
                         <th scope="col">Rejected</th>
                         <th scope="col">Date Added</th>
@@ -27,6 +28,11 @@
                         <td>{{ data.amount }}</td>
                         <td>{{ data.phone_no }}</td>
                         <td>{{ data.service_type }}</td>
+                        {% if data.marked_paid %}
+                        <td>PAID</td>
+                        {% else %}
+                        <td>NOT PAID</td>
+                        {% endif %}
                         {% if data.approved %}
                         <td>Approved</td>
                         {% else %}
