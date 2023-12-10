@@ -77,9 +77,11 @@
                         {% if data.marked_paid %}
                         <td>PAID</td>
                         {% else %}
-                        <td><button data-toggle="modal" data-target="#paymentmodal" type="button" class="btn btn-primary"
-                            onclick="javascript:startpayment(`{{ data.cc_tr_serial }}`, `{{ data.amount }}`, `{{ data.service_type }}`);">Make Payment</button></td>
-                        {% endif %}   
+                        <td><button data-toggle="modal" data-target="#paymentmodal" type="button"
+                                class="btn btn-primary"
+                                onclick="javascript:startpayment(`{{ data.cc_tr_serial }}`, `{{ data.amount }}`, `{{ data.service_type }}`);">Make
+                                Payment</button></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -88,8 +90,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="creditcashmodal" tabindex="-1" aria-labelledby="creditcashmodal"
-    aria-hidden="true">
+<div class="modal fade" id="creditcashmodal" tabindex="-1" aria-labelledby="creditcashmodal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,8 +101,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditcashform"
-                    name="creditcashform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data"
+                    id="creditcashform" name="creditcashform">
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE</label>
                         <select class="form-control" id="creditcashservicetype" name="servicetype">
@@ -113,15 +114,16 @@
                     <input type="hidden" class="form-control" id="creditcashserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="creditcashphonenumber" required name="phonenumber">
+                        <input type="number" class="form-control" id="creditcashphonenumber" required
+                            name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
                         <select class="form-control" id="creditcashcreditamount" name="creditamount">
                             {% for option in soptions %}
-                                {% if option.service_id == 1 %}
-                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
-                                {% endif %}
+                            {% if option.service_id == 1 %}
+                            <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -135,8 +137,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="creditbettingmodal" tabindex="-1" aria-labelledby="creditbettingmodal"
-    aria-hidden="true">
+<div class="modal fade" id="creditbettingmodal" tabindex="-1" aria-labelledby="creditbettingmodal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,8 +148,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditbettingform"
-                    name="creditbettingform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data"
+                    id="creditbettingform" name="creditbettingform">
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE</label>
                         <select class="form-control" id="creditbettingservicetype" name="servicetype">
@@ -160,15 +161,16 @@
                     <input type="hidden" class="form-control" id="creditbettingserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="creditbettingphonenumber" required name="phonenumber">
+                        <input type="number" class="form-control" id="creditbettingphonenumber" required
+                            name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
                         <select class="form-control" id="creditbettingamount" name="creditamount">
                             {% for option in soptions %}
-                                {% if option.service_id == 2 %}
-                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
-                                {% endif %}
+                            {% if option.service_id == 2 %}
+                            <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -182,8 +184,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="creditelectricmodal" tabindex="-1" aria-labelledby="creditelectricmodal"
-    aria-hidden="true">
+<div class="modal fade" id="creditelectricmodal" tabindex="-1" aria-labelledby="creditelectricmodal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -194,8 +195,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditelectricform"
-                    name="creditelectricform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data"
+                    id="creditelectricform" name="creditelectricform">
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE</label>
                         <select class="form-control" id="creditelectricservicetype" name="servicetype">
@@ -207,15 +208,16 @@
                     <input type="hidden" class="form-control" id="creditelectricserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="creditelectricphonenumber" required name="phonenumber">
+                        <input type="number" class="form-control" id="creditelectricphonenumber" required
+                            name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
                         <select class="form-control" name="creditamount" id="creditelectriccreditamount">
                             {% for option in soptions %}
-                                {% if option.service_id == 3 %}
-                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
-                                {% endif %}
+                            {% if option.service_id == 3 %}
+                            <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -241,8 +243,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="discountedairtimeform"
-                    name="discountedairtimeform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data"
+                    id="discountedairtimeform" name="discountedairtimeform">
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE</label>
                         <select class="form-control" id="discountedairtimeservicetype" name="servicetype">
@@ -254,15 +256,16 @@
                     <input type="hidden" class="form-control" id="discountedairtimeserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="discountedairtimephonenumber" required name="phonenumber">
+                        <input type="number" class="form-control" id="discountedairtimephonenumber" required
+                            name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
                         <select class="form-control" id="discountedairtimeamount" name="creditamount">
                             {% for option in soptions %}
-                                {% if option.service_id == 4 %}
-                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
-                                {% endif %}
+                            {% if option.service_id == 5 %}
+                            <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -277,8 +280,7 @@
 </div>
 
 
-<div class="modal fade" id="creditgrocerymodal" tabindex="-1" aria-labelledby="creditgrocerymodal"
-    aria-hidden="true">
+<div class="modal fade" id="creditgrocerymodal" tabindex="-1" aria-labelledby="creditgrocerymodal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -289,8 +291,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data" id="creditgroceryform"
-                    name="creditgroceryform">
+                <form action="{{ url_for('dash.post_req') }}" method="POST" enctype="multipart/form-data"
+                    id="creditgroceryform" name="creditgroceryform">
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE</label>
                         <select class="form-control" id="creditgroceryservicetype" name="servicetype">
@@ -302,15 +304,16 @@
                     <input type="hidden" class="form-control" id="creditgroceryserviceserial" name="serviceserial">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Enter Phone Number:</label>
-                        <input type="number" class="form-control" id="creditgroceryphonenumber" required name="phonenumber">
+                        <input type="number" class="form-control" id="creditgroceryphonenumber" required
+                            name="phonenumber">
                     </div>
                     <div class="form-group">
                         <label for="servicetype">CHOOSE SERVICE PACKAGE</label>
                         <select class="form-control" id="creditgroceryamount" name="creditamount">
                             {% for option in soptions %}
-                                {% if option.service_id == 4 %}
-                                <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
-                                {% endif %}
+                            {% if option.service_id == 4 %}
+                            <option value="{{ option.option_amount }}">{{ option.option_name }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -325,8 +328,7 @@
 </div>
 
 
-<div class="modal fade" id="paymentmodal" tabindex="-1" aria-labelledby="paymentmodal"
-    aria-hidden="true">
+<div class="modal fade" id="paymentmodal" tabindex="-1" aria-labelledby="paymentmodal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -336,11 +338,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('dash.initiate_payment') }}" method="POST" enctype="multipart/form-data" id="paymentform"
-                    name="paymentform">
+                <form action="{{ url_for('dash.initiate_payment') }}" method="POST" enctype="multipart/form-data"
+                    id="paymentform" name="paymentform">
                     <div class="form-group">
                         <label for="payservicename" class="col-form-label">Service Name:</label>
-                        <input type="text" class="form-control" id="payservicename" required name="payservicename" readonly>
+                        <input type="text" class="form-control" id="payservicename" required name="payservicename"
+                            readonly>
                     </div>
                     <input type="hidden" class="form-control" id="paymentserial" name="paymentserial">
                     <div class="form-group">
@@ -394,7 +397,7 @@
         $("#discountedairtimeserviceserial").val(5);
     }
 
-    function startpayment(paymentserial, amount, servicetype){
+    function startpayment(paymentserial, amount, servicetype) {
         console.log(paymentserial);
         console.log(amount);
         console.log(servicetype);
