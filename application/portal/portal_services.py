@@ -11,7 +11,7 @@ def send_payment_req(amount, serial, servicename):
     # Replace these values with your actual URL, authorization token, and payload
     url = 'https://payments.yoco.com/api/checkouts'
 
-    authorization_token = 'Bearer ' + str(os.environ.get("YOCO_TEST_KEY"))
+    authorization_token = 'Bearer ' + str(os.environ.get("YOCO_LIVE_SECRET_KEY"))
 
     payload = {
                 'amount': amountcents,

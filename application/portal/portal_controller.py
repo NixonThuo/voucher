@@ -77,6 +77,7 @@ def initiate_payment():
             trans.yoco_payment_facilitator = paymentdata["yoco"]["merchantId"]
             db.session.commit()
             return redirect(redirecturl)
+        print(paymentdata)
         return render_template("portal/payment_success.html", paymentdata=paymentdata)
     return render_template("portal/list_requests.html")
 
