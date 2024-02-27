@@ -31,6 +31,8 @@ def dash_tracking():
         CreditServicesTr.service_id,
         CreditServicesTr.marked_paid,
         ServiceType.service_type
+    ).filter(
+        CreditServicesTr.user_id == session['userid']
     ).all()
     services = ServiceType.query.all()
     soptions = ServiceTypeOptions.query.filter_by(enabled=True).all()

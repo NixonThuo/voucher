@@ -18,13 +18,14 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="shortcut icon" href="#">
-    
+
 
     <!-- Custom CSS -->
     <style>
         @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
         @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
         @import url('https://fonts.cdnfonts.com/css/sansation');
+
         /*
         /* Sidebar navigation */
         .sidebar {
@@ -72,7 +73,7 @@
         }
 
         .navbar-dark .navbar-toggler-icon {
-            color:#d4f70e !important;
+            color: #d4f70e !important;
         }
 
         .navbar-nav .nav-link {
@@ -104,13 +105,15 @@
             font-size: 13px;
         }
 
-        .table td, .table th {
+        .table td,
+        .table th {
             padding: 0.30rem;
             vertical-align: top;
             border-top: 1px solid #dee2e6;
         }
 
-        .btn-group-sm>.btn, .btn-sm {
+        .btn-group-sm>.btn,
+        .btn-sm {
             padding: 0.1rem 0.5rem;
             font-size: .800rem;
             line-height: 1.5;
@@ -127,7 +130,6 @@
             background-color: #fff;
             border: 1px solid #dee2e6;
         }
-
     </style>
 </head>
 
@@ -141,9 +143,9 @@
         {% else %}
         <a class="navbar-brand" href="{{ url_for('dash.dash_tracking') }}">YEBO-PORTAL</a>
         {% endif %}
-        <button class="navbar-toggler" type="button"  data-toggle="collapse" data-target="#navbarNav"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span  class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <!--
                     <button class="btn btn-primary" type="button" id="sidebar-btn">

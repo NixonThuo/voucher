@@ -12,7 +12,7 @@ class Users(db.Model):
     password = db.Column('password', db.String)
     dateadded = db.Column('date_added', db.Date, default=datetime.now())
     isenabled = db.Column('isenabled', db.Boolean, default=True)
-    isadmin = db.Column('is_admin', db.Boolean, default=True)
+    isadmin = db.Column('is_admin', db.Boolean, default=False)
     isactive = True
     isanonymous = False
     authenticated = False
